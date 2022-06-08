@@ -9,7 +9,7 @@ Blast+ version 2.12.0
 ```sh
 git clone https://github.com/imanyass/ShigaPass.git
 ```
-**2.** B. Give the execute permission to the file ShigaPass_v1.0.sh:
+**2.** Give the execute permission to the file ShigaPass_v1.0.sh:
 ```
 chmod +x ShigaPass_v1.0.sh
 ```
