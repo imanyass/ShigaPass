@@ -30,5 +30,5 @@ usage : bash ShigaPass_v1.0.sh -l <your_list> -o <output_directory> -p <database
 -h        Display this help and exit
 
 Example: bash ShigaPass_v1.0.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u
-Please note that the -u option should be used when running the script for the first time"
+Please note that the -u option should be used when running the script for the first time
 ````
