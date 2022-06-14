@@ -5,7 +5,7 @@
 
 usage() {
         echo
-        echo "###### This script is used for determining Shigella serotype  #####"
+        echo "###### This script is used for determining Shigella serotypes  #####"
         echo "usage : bash ShigaPass_v1.1.sh -l <your_list> -o <output_directory> -p <databases_pathway>"
         echo
         echo "options :"
