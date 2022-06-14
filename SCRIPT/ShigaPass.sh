@@ -15,7 +15,7 @@ usage() {
         echo "-u        Update the databases (Optional)"
 	echo "-k	Keep intermediate files (Optional)"
         echo "-h        Display this help and exit"
-        echo "Example: ShigaPass_v1.2.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DATABASES -u"
+        echo "Example: ShigaPass_v1.2.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -u"
         echo "Please note that the -u option should be used when running the script for the first time"
 }
 
