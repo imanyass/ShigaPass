@@ -6,7 +6,7 @@
 usage() {
         echo
         echo "###### This script is used for determining Shigella serotype  #####"
-        echo "usage : bash ShigaPass_v1.0.sh -l <your_list> -o <output_directory> -p <databases_pathway>"
+        echo "usage : bash ShigaPass_v1.1.sh -l <your_list> -o <output_directory> -p <databases_pathway>"
         echo
         echo "options :"
         echo "-l        List file contains the path of FASTA files (mandatory)"
@@ -15,7 +15,7 @@ usage() {
         echo "-u        Update the databases (Optional)"
 	echo "-k	Keep intermediate files (Optional)"
         echo "-h        Display this help and exit"
-        echo "Example: bash ShigaPass_v1.0.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u"
+        echo "Example: bash ShigaPass_v1.1.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u"
         echo "Please note that the -u option should be used when running the script for the first time"
 }
 
@@ -105,6 +105,8 @@ do
 	sed 's/_/~/g' ${y} > ${OUTDIR}/${NAMEDIR}/${NAMEDIR}_parsed.fasta # Removing "_" from Fasta's name
 	f="${OUTDIR}/${NAMEDIR}/${NAMEDIR}_parsed.fasta"
 
+	FastaFile=${y##*/}
+        FastaName=${FastaFile%%.*}
 
 	echo "### ipaH checkpoint ###"
         BLAST_awk ipaH_150-mers.fasta ipaH 98 95
@@ -213,7 +215,7 @@ do
 			done
 		echo $FLEXSEROTYPE
 		phages=$(sort -k 1 -t ";" ${OUTDIR}/${NAMEDIR}/POAC_hits.txt |cut -f 1 -d ";" |awk 'BEGIN { ORS = ";" } { print }' )
-		echo "${y};$phages;$FLEXSEROTYPE" | sed 's/;;/;/g' | tee -a ${OUTDIR}/ShigaPass_Flex_summary_${date}.csv
+		echo "$FastaName;$phages;$FLEXSEROTYPE" | sed 's/;;/;/g' | tee -a ${OUTDIR}/ShigaPass_Flex_summary_${date}.csv
 
 		elif [[  -z "$RFB"  || "$RFB" == "" ]] # if no rfb hit is detected, search for the presence of SS rfb
 		then
@@ -241,11 +243,11 @@ do
 			GENEST=$(awk -F "\t|:" '{if ($5==100 && $6==$4) print $2}' ${OUTDIR}/${NAMEDIR}/${g}_blastout.txt | cut -f 2 -d "-") 
 			#GENEST=$(blastn -db ${DBPATHWAY}/${g}_len.fasta -query $f ${BLAST_OPT} | awk -F '\t|:' '{if ($5==100 && $6==$4) print $2}' | cut -f 2 -d "-" )
 			[[ -z $GENEST ]] && GENEST='ND'
-			echo "${g}:$GENEST" | tee -a ${OUTDIR}/${NAMEDIR}/mlst_blastout.txt
+			echo "${g}:$GENEST" | tee -a ${OUTDIR}/${NAMEDIR}/mlst_alleles.txt
 		done
 
 		echo "### Infering MLST ###"
-		MOFILE="${OUTDIR}/${NAMEDIR}/mlst_blastout.txt"
+		MOFILE="${OUTDIR}/${NAMEDIR}/mlst_alleles.txt"
 		echo "$(grep adk $MOFILE | cut -f 2 -d ":" ) $(grep fumC $MOFILE |cut -f 2 -d ":" ) $(grep gyrB $MOFILE |cut -f 2 -d ":" ) $(grep icd $MOFILE |cut -f 2 -d ":" ) $(grep mdh $MOFILE |cut -f 2 -d : ) $(grep purA $MOFILE |cut -f 2 -d : ) $(grep recA $MOFILE |cut -f 2 -d : )"
 		awk -v AWK_adk="$(grep adk $MOFILE | cut -f 2 -d ":" )" \
 		-v AWK_fumC="$(grep fumC $MOFILE |cut -f 2 -d ":" )" \
@@ -254,8 +256,8 @@ do
 		-v AWK_mdh="$(grep mdh $MOFILE |cut -f 2 -d ":" )" \
 		-v AWK_purA="$(grep purA $MOFILE |cut -f 2 -d ":" )" \
 		-v AWK_recA="$(grep recA $MOFILE |cut -f 2 -d ":" )" \
-		'{if ($2==AWK_adk && $3==AWK_fumC && $4==AWK_gyrB && $5==AWK_icd && $6==AWK_mdh && $7==AWK_purA && $8==AWK_recA) print "ST"$1}' ${DBPATHWAY}/ST_profiles.txt > ${OUTDIR}/${NAMEDIR}/mlst_records.txt # if a line of ST databank matches every ST, we print it
-		MLST=$(cut -f 2 ${OUTDIR}/${NAMEDIR}/mlst_records.txt | cut -f 2 -d ":")
+		'{if ($2==AWK_adk && $3==AWK_fumC && $4==AWK_gyrB && $5==AWK_icd && $6==AWK_mdh && $7==AWK_purA && $8==AWK_recA) print "ST"$1}' ${DBPATHWAY}/ST_profiles.txt > ${OUTDIR}/${NAMEDIR}/mlst_ST.txt # if a line of ST databank matches every ST, we print it
+		MLST=$(cut -f 2 ${OUTDIR}/${NAMEDIR}/mlst_ST.txt | cut -f 2 -d ":")
 		[[ ! -z "$MLST" ]] || MLST="none" # if there is no match at this point, we assume that there is definetely no match
 		echo $MLST
 
@@ -320,8 +322,7 @@ do
 		fi
 	fi
 	
-FastaFile=${y##*/}
-FastaName=${FastaFile%%.*}
+
 echo "$FastaName;$RFB;$hit;$MLST;$FLIC;$CRISPR;$ipaH;$ipaH_hits;$SEROTYPE;$FLEXSEROTYPE" | tee -a ${OUTDIR}/ShigaPass_summary_${date}.csv
 rm ${f}
 
