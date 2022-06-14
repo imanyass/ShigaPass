@@ -6,7 +6,7 @@
 usage() {
         echo
         echo "###### This script is used for determining Shigella serotypes  #####"
-        echo "usage : bash ShigaPass_v1.1.sh -l <your_list> -o <output_directory> -p <databases_pathway>"
+        echo "usage : ShigaPass_v1.2.sh -l <your_list> -o <output_directory> -p <databases_pathway>"
         echo
         echo "options :"
         echo "-l        List file contains the path of FASTA files (mandatory)"
@@ -15,7 +15,7 @@ usage() {
         echo "-u        Update the databases (Optional)"
 	echo "-k	Keep intermediate files (Optional)"
         echo "-h        Display this help and exit"
-        echo "Example: bash ShigaPass_v1.1.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u"
+        echo "Example: ShigaPass_v1.2.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DATABASES -u"
         echo "Please note that the -u option should be used when running the script for the first time"
 }
 
@@ -155,7 +155,12 @@ do
 				then
 					RFB=${NewRFBs[$index]}
 					echo "rfb has changed to" ${NewRFBs[$index]}
-					hit=$(sort -k 2 -t ";" -n -r ${OUTDIR}/${NAMEDIR}/additionalrfb_hits.txt | head -n 1 | cut -f 2 -d ";")
+					if [[ "$RFB" != "C6" ]]
+                                        then
+                                                hit=$(sort -k 2 -t ";" -n -r ${OUTDIR}/${NAMEDIR}/additionalrfb_hits.txt | head -n 1 | cut -f 2 -d ";")
+                                        else
+                                                hit=$(sort -k 2 -t ";" -n -r ${OUTDIR}/${NAMEDIR}/rfb_hits.txt  | head -n 1 | cut -f 2 -d ";")
+                                        fi
 				else
 					RFB=${RFBs[$index]}
 					echo "rfb has remained" ${RFBs[$index]}
