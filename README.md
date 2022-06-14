@@ -9,18 +9,18 @@ Blast+ version 2.12.0
 ```sh
 git clone https://github.com/imanyass/ShigaPass.git
 ```
-**2.** Give the execute permission to the file ShigaPass_v1.0.sh:
+**2.** Give the execute permission to the file ShigaPass.sh:
 ```
-chmod +x ShigaPass_v1.0.sh
+chmod +x ShigaPass.sh
 ```
 **3.** Execute ShigaPass  with the following command line model:
 ```sh
-./ShigaPass_v1.0.sh  [options]
+./ShigaPass.sh  [options]
 ```
 ## Usage 
 Run ShigaPass with -h option to read the following documentation:
 ````
-usage : bash ShigaPass_v1.0.sh -l <your_list> -o <output_directory> -p <databases_pathway>
+usage : bash ShigaPass_v1.1.sh -l <your_list> -o <output_directory> -p <databases_pathway>
 
 -l        List file contains the path of FASTA files (mandatory)
 -o        Output directory (mandatory)
@@ -29,6 +29,6 @@ usage : bash ShigaPass_v1.0.sh -l <your_list> -o <output_directory> -p <database
 -k        Keep intermediate files (Optional)
 -h        Display this help and exit
 
-Example: bash ShigaPass_v1.0.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u
+Example: bash ShigaPass_v1.1.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/DATABASES -u
 Please note that the -u option should be used when running the script for the first time
 ````
