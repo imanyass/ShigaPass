@@ -29,7 +29,7 @@ usage : ShigaPass_v1.2.sh -l <your_list> -o <output_directory> -p <databases_pat
 -k        Keep intermediate files (Optional)
 -h        Display this help and exit
 
-Example: ShigaPass_v1.2.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -u
+Example: ShigaPass.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -u
 Please note that the -u option should be used when running the script for the first time
 ````
 
