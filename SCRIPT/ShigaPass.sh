@@ -370,40 +370,40 @@ do
 		echo "### Combining data into a serotype ###"
 		
 		SEROTYPE=$(awk -v AWK_mlst=${MLST} -v AWK_flic=${FLIC} -v AWK_crispr=${CRISPR} -v AWK_rfb=${RFB} -F ";"\
-        	'{if ( $1==AWK_mlst && $2==AWK_flic && $3==AWK_crispr && $4==AWK_rfb ) print $5}' ${DBPATHWAY}/ShigaPass_meta_profiles_v4.csv) # Comparing the obtained profile with our profiles dataset to infer the serotype
+        	'{if ( $1==AWK_mlst && $2==AWK_flic && $3==AWK_crispr && $4==AWK_rfb ) print $5}' ${DBPATHWAY}/ShigaPass_meta_profiles_v5.csv) # Comparing the obtained profile with our profiles dataset to infer the serotype
         	if [[ ! -z "$SEROTYPE" ]]
         	then
                         echo $SEROTYPE
-			Matching="100%"
+			#Matching="100%"
                         echo "Profile matching 100%"
                 else
                 # if the serotype is not detected, compare the obtained profile by taking always the rfb and 2/3 of the rest of databases
                 	SEROTYPE=$(awk -v AWK_mlst=${MLST} -v AWK_flic=${FLIC} -v AWK_crispr=${CRISPR} -v AWK_rfb=${RFB} -F ";"\
-                	'{if ($1==AWK_mlst && $2==AWK_flic  && $4==AWK_rfb || $1==AWK_mlst && $3==AWK_crispr  && $4==AWK_rfb ||$2==AWK_flic && $3==AWK_crispr && $4==AWK_rfb ) print $5}' ${DBPATHWAY}/ShigaPass_meta_profiles_v4.csv |cut -f 1 -d " " |head -n 1)
+                	'{if ($1==AWK_mlst && $2==AWK_flic  && $4==AWK_rfb || $1==AWK_mlst && $3==AWK_crispr  && $4==AWK_rfb ||$2==AWK_flic && $3==AWK_crispr && $4==AWK_rfb ) print $5}' ${DBPATHWAY}/ShigaPass_meta_profiles_v5.csv |cut -f 1 -d " " |head -n 1)
                 	if [[ ! -z "$SEROTYPE" ]]
                 	then
                                 echo $SEROTYPE
-				Matching="75%"
+				#Matching="75%"
                                 echo "Profile matching 75%"
 			else
 			# if the serotype is not detected, search for a known Shigella MLST
 				SEROTYPE=$(awk -v AWK_mlst=${MLST} -v AWK_flic=${FLIC} -v AWK_crispr=${CRISPR} -v AWK_rfb=${RFB} -F ";" \
-				'{if ($1==AWK_mlst && $2==AWK_flic || $1==AWK_mlst && $3==AWK_crispr || $1==AWK_mlst ) print "unknown"}' ${DBPATHWAY}/ShigaPass_meta_profiles_v4.csv |cut -f 1 -d " " |head -n 1)
+				'{if ($1==AWK_mlst && $2==AWK_flic || $1==AWK_mlst && $3==AWK_crispr || $1==AWK_mlst ) print "unknown"}' ${DBPATHWAY}/ShigaPass_meta_profiles_v5.csv |cut -f 1 -d " " |head -n 1)
 				if [[ ! -z "$SEROTYPE" ]] && [[  "$rfb" != "none" ]] 
 				then
 					SEROTYPE="Shigella spp."
-					Matching="<75%"
+					#Matching="<75%"
 					echo $SEROTYPE
 					echo "No profile matching with rfb, more probably contamination"
 				elif [[ ! -z "$SEROTYPE" ]] && [[  "$rfb" == "none" ]]
 				then
 					SEROTYPE="Shigella spp."
-					Matching="<75%"
+					#Matching="<75%"
 					echo $SEROTYPE
 					echo "No profile matching with rfb, more probabaly bad sequence quality"
 				else 
 					SEROTYPE="EIEC"
-					Matching="0%"
+					#Matching="0%"
 					echo $SEROTYPE
 					FLEXSEROTYPE=""
 					echo "No profile matching and ipaH+, More probabaly EIEC"
