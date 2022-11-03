@@ -1,0 +1,7 @@
+adk:3
+fumC:59
+gyrB:60
+icd:3
+mdh:3
+purA:3
+recA:3

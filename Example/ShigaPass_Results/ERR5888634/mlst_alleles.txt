@@ -1,0 +1,7 @@
+adk:1
+fumC:10
+gyrB:1
+icd:1
+mdh:1
+purA:1
+recA:1
