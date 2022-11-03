@@ -2,7 +2,7 @@
 
 ShigaPass is a new *in silico* tool used to predict *Shigella* serotypes and to differentiate between *Shigella*, EIEC (Enteroinvasive *E. coli*), and non *Shigella*/EIEC using assembled whole genomes.
 
-## Dependecies
+## Dependencies
  ShigaPass is a command line tool written in Bash version 4.4.20 and requires Blast+ version 2.12.0 to run. 
  - BLAST+ can be installed using the following command line (for Ubuntu users) : sudo apt-get install ncbi-blast+ 
  - For more information on how to install Blast+, please refer to https://www.ncbi.nlm.nih.gov/books/NBK279690/
