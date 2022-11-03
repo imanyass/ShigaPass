@@ -69,7 +69,7 @@ none means that no allele/profile is detected (in the ERR5982186 example no *fli
 
 SB: *S. boydii*; SD: *S. dysenteriae*; SF: *S. flexneri*; SS: *S. sonnei*
 
-## Output Files
+### Output Files
 * In the output directory, two files will be written:
   1. ShigaPass_summary.csv: semicolon-delimited file with one row per genome inclinding the sample name; type of *rfb*; number of *rfb* hits, (% of *rfb* coverage); MLST ST; type of *fliC*; CRISPR spacers; the presence of *ipaH*; the predicted serotype and *S. flexneri* subserotype; comments to show the number of *rfb* when more than one rfb is detected 
   2. ShigaPass_Flex_summary.csv: semicolon-delimited file detailing the phage and plasmid-encoded O-antigen modification (POAC) genes detected for the predicted *S. flexneri* genomes
