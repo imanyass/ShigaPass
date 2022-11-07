@@ -24,7 +24,7 @@ chmod +x ShigaPass.sh
 Run ShigaPass without option to read the following documentation:
 ````
 ###### This tool is used to predict Shigella serotypes  #####
-        usage : ShigaPass.sh [options]
+        Usage : ShigaPass.sh [options]
    
         options :
         -l	List of input file(s) (FASTA) with their path(s) (mandatory)
