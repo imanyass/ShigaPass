@@ -27,7 +27,7 @@ Run ShigaPass without option to read the following documentation:
         usage : ShigaPass.sh [options]
    
         options :
-        -l	List of input files (FASTA) with their paths (mandatory)
+        -l	List of input file(s) (FASTA) with their path(s) (mandatory)
         -o	Output directory (mandatory)
         -p	Path to databases directory (mandatory)
         -t	Number of threads (optional, default: 2)
@@ -51,7 +51,7 @@ Run ShigaPass without option to read the following documentation:
 
 **Running ShigaPass**
 
-Create a list file containing the path(s) to the FASTA file(s) then run ShigaPass
+Create a list file containing the paths to the FASTA files then run ShigaPass
 ``` 
 ShigaPass.sh -l ShigaPass_test.txt -o ShigaPass_Results -p ShigaPass_DataBases -u -k
 ```
