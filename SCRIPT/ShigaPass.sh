@@ -7,10 +7,10 @@
 usage() {
         echo
         echo "###### This tool is used to predict Shigella serotypes  #####"
-        echo "usage : bash ShigaPass.sh [options]"
+        echo "Usage : ShigaPass.sh [options]"
         echo
         echo "options :"
-        echo "-l	List of input files (FASTA) with their paths (mandatory)"
+        echo "-l	List of input file(s) (FASTA) with their path(s) (mandatory)"
         echo "-o	Output directory (mandatory)"
         echo "-p	Path to databases directory (mandatory)"
 	echo "-t	Number of threads (optional, default: 2)" 
@@ -18,7 +18,7 @@ usage() {
 	echo "-k	Do not remove subdirectories (optional)"
 	echo "-v	Display the version and exit"
         echo "-h	Display this help and exit"
-        echo "Example: bash ShigaPass.sh -l list_of_fasta.ls -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -t 4 -u -k"
+        echo "Example: ShigaPass.sh -l list_of_fasta.txt -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -t 4 -u -k"
         echo "Please note that the -u option should be used when running the script for the first time and after databases updates"
 }
 
@@ -133,7 +133,6 @@ do
         SEROTYPE=""
         ipaH=""
         ipah_hits=""
-        confidence=""
 	RFB_coverage=""
 	ipaH_coverage=""
 
