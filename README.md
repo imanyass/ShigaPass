@@ -83,7 +83,7 @@ SB: *S. boydii*; SD: *S. dysenteriae*; SF: *S. flexneri*; SS: *S. sonnei*
 |hitscoverage.txt|This file displays in addition to the name and the number of hits detected present in hits.txt, the total hits number for the identified gene (3rd column) and the percentage of the hits detected (number of hits detected/total number of hits) (4th column) |
 
 ### Notes
-The Fasta sequences were assembled using SPAdes version 3.15 (Bankevich et al, 2012, Journal of Computational Biology) with the following options: -k 21,33,55,77  --only-assembler --careful --cov-cutoff auto 
+The Fasta sequences were assembled using SPAdes version 3.15 (Bankevich et al. Journal of Computational Biology, 2012) with the following options: -k 21,33,55,77  --only-assembler --careful --cov-cutoff auto 
 
 You can download the short reads using the following command lines:
 ```
