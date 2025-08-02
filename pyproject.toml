@@ -1,0 +1,58 @@
+[project]
+name = "shigapass"
+dynamic = ["version"]
+authors = [
+  {name = "Iman Yassine", email = "iman.yassine@ndph.ox.ac.uk"},
+  {name = "Ryan James Kennedy", email = "ryan.kennedy@skane.se"},
+]
+description = "A tool is used to predict Shigella serotypes."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = [
+    "setuptools",
+    "wheel",
+    "biopython",
+    "pandas",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=6.0",
+    "pytest-cov>=2.10",
+    "pytest-mock>=3.6",
+]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.10", 
+    "pytest-mock>=3.6",
+    "black>=21.0",
+    "flake8>=3.8",
+]
+
+[project.urls]
+Repository = "https://github.com/ryanjameskennedy/shigapass"
+Issues = "https://github.com/ryanjameskennedy/shigapass/issues"
+Changelog = "https://github.com/ryanjameskennedy/shigapass/CHANGELOG.md"
+
+[project.scripts]
+shigapass = "shigapass.__main__:main"
+
+[tool.setuptools]
+packages = ["shigapass"]
+
+[tool.setuptools.dynamic]
+version = {attr = "shigapass.__version__.VERSION"}

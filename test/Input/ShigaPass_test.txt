@@ -1,0 +1,4 @@
+test/Input/ERR5888634.fasta
+test/Input/ERR5952732.fasta
+test/Input/ERR5976293.fasta
+test/Input/ERR5982186.fasta

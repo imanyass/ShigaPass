@@ -12,48 +12,52 @@ ShigaPass is a new *in silico* tool used to predict *Shigella* serotypes and to 
 ```
 git clone https://github.com/imanyass/ShigaPass.git
 ```
-**2.** Give the execute permission to the file ShigaPass.sh:
+**2.** Install ShigaPass using pip:
 ```
-chmod +x ShigaPass.sh
+cd ShigaPass
+pip install .
 ```
 **3.** Execute ShigaPass  with the following command line model:
 ```
-./ShigaPass.sh  [options]
+shigapass [options]
 ```
 ## Usage 
 Run ShigaPass without option to read the following documentation:
 ````
-###### This tool is used to predict Shigella serotypes  #####
-        Usage : ShigaPass.sh [options]
-   
-        options :
-        -l	List of input file(s) (FASTA) with their path(s) (mandatory)
-        -o	Output directory (mandatory)
-        -p	Path to databases directory (mandatory)
-        -t	Number of threads (optional, default: 2)
-        -u	Call the makeblastdb utility for databases initialisation (optional, but required when running the script for the first time)
-        -k	Do not remove subdirectories (optional)
-       	-v	Display the version and exit
-        -h	Display this help and exit
-        Example: ShigaPass.sh -l list_of_fasta.txt -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -t 4 -u -k
-        Please note that the -u option should be used when running the script for the first time and after databases updates
+                    ...::: ShigaPass v1.6.0 :::...
+Author(s): Iman Yassine
+
+Description: This tool is used to predict Shigella serotypes.
+
+Usage: shigapass [options]
+Options:
+    -l, --list_file         List of input file(s) (FASTA) with their path(s) (mandatory)
+    -o, --outdir       Output directory (mandatory)
+    -p, --db           Path to databases directory (mandatory)
+    -t, --threads      Number of threads (optional, default: 2)
+    -u, --mkdb         Call the makeblastdb utility for databases initialisation (optional, but required when running the script for the first time)
+    -k, --keep         Do not remove subdirectories (optional)
+    -v, --version      Display the version and exit
+    -h, --help         Display this help and exit
+
+Example: shigapass -l list_of_fasta.txt -o ShigaPass_Results -p ShigaPass/ShigaPass_DataBases -t 4 -u -k
+
+NOTE: The -u option should be used when running the script for the first time and after databases updates.
 ````
 
 
+## Test Example
+- The Fasta sequence files are available in the directory `test/Input`
+- All output files are available in the directory `test/ShigaPass_Results`
 
-## Example
-- The Fasta sequence files are available in the directory Example/Input
-
-   * Please unzip the sequences (using gunzip) before running ShigaPass
-
-- All output files are available in the directory Example/ShigaPass_Results
-
-
-**Running ShigaPass**
+Unzip the sequences (using gunzip) before running ShigaPass
+```
+gunzip test/Input/*.gz
+```
 
 Create a list file containing the paths to the FASTA files then run ShigaPass
-``` 
-ShigaPass.sh -l ShigaPass_test.txt -o ShigaPass_Results -p ShigaPass_DataBases -u -k
+```
+shigapass -l test/Input/ShigaPass_test.txt -o test/ShigaPass_Results -p db -u -k
 ```
 
 Here's an example of ShigaPass summary file
